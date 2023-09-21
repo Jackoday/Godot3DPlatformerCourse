@@ -9,6 +9,9 @@ extends CharacterBody3D
 
 @onready var _model := $Model
 @onready var _camera_rig := $CameraRig
+@onready var _animation_tree := $AnimationTree
+
+@onready var _spawn_point := global_position
 
 var can_double_jump := true
 
@@ -49,4 +52,15 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, 0.0, air_friction)
 			velocity.z = lerp(velocity.z, 0.0, air_friction)
 	
+	_animation_tree.set("parameters/conditions/idle", input_direction == Vector3.ZERO and is_on_floor())
+	_animation_tree.set("parameters/conditions/walk", input_direction != Vector3.ZERO and is_on_floor())
+	_animation_tree.set("parameters/conditions/jump", Input.is_action_just_pressed("jump"))
+	_animation_tree.set("parameters/conditions/double_jump", Input.is_action_just_pressed("jump") and not is_on_floor())
+	
 	move_and_slide()
+	
+	if global_position.y < -10:
+		respawn()
+
+func respawn():
+	global_position = _spawn_point
