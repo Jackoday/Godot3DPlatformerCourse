@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://pr85o0prfk2c"]
+
+[ext_resource type="PackedScene" uid="uid://c3phe582f7un5" path="res://actors/actor.tscn" id="1_2nn84"]
+[ext_resource type="PackedScene" uid="uid://gc781xlpttf6" path="res://common/models/characters/Duck/character_duck.gltf" id="2_kxd6t"]
+[ext_resource type="Script" path="res://actors/player.gd" id="2_pvbdc"]
+[ext_resource type="Script" path="res://actors/camera_rig.gd" id="4_xpjm6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kaxra"]
+height = 1.6
+
+[node name="Player" instance=ExtResource("1_2nn84")]
+script = ExtResource("2_pvbdc")
+max_speed = 5.0
+acceleration = 0.1
+ground_friction = 0.2
+air_friction = 0.15
+jump_velocity = 10.0
+gravity = 19.6
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_kaxra")
+
+[node name="Model" parent="." index="1" instance=ExtResource("2_kxd6t")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CameraRig" type="SpringArm3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+spring_length = 7.0
+script = ExtResource("4_xpjm6")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" index="0"]
+current = true
