@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cj74j20txawu0"]
+
+[node name="Item" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
