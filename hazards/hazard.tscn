@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dgqhd80hktqx7"]
+
+[node name="Hazard" type="AnimatableBody3D"]
+collision_layer = 8
+collision_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

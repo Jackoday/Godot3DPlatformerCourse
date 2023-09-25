@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://csfmo7nphio4n"]
+
+[ext_resource type="MeshLibrary" uid="uid://d11j0gmo2p600" path="res://levels/mesh_library.tres" id="1_15nep"]
+[ext_resource type="Script" path="res://levels/base_level.gd" id="1_mbhfu"]
+
+[sub_resource type="Animation" id="Animation_fng76"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5qv2g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_slgf5"]
+_data = {
+"RESET": SubResource("Animation_5qv2g"),
+"fade_out": SubResource("Animation_fng76")
+}
+
+[sub_resource type="Gradient" id="Gradient_lfhku"]
+offsets = PackedFloat32Array(0.560748, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c80tt"]
+seed = 2
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6e3ba"]
+seamless = true
+color_ramp = SubResource("Gradient_lfhku")
+noise = SubResource("FastNoiseLite_c80tt")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj3ee"]
+sky_top_color = Color(0.529412, 0.807843, 0.921569, 1)
+sky_horizon_color = Color(0.713726, 0.882353, 0.94902, 1)
+sky_cover = SubResource("NoiseTexture2D_6e3ba")
+ground_bottom_color = Color(0.529412, 0.807843, 0.921569, 1)
+ground_horizon_color = Color(0.713726, 0.882353, 0.94902, 1)
+
+[sub_resource type="Sky" id="Sky_kwxh4"]
+sky_material = SubResource("ProceduralSkyMaterial_fj3ee")
+
+[sub_resource type="Environment" id="Environment_fjg4o"]
+background_mode = 2
+sky = SubResource("Sky_kwxh4")
+ambient_light_sky_contribution = 0.2
+reflected_light_source = 1
+
+[node name="BaseLevel" type="Node3D"]
+script = ExtResource("1_mbhfu")
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_slgf5")
+}
+
+[node name="GridMaps" type="Node3D" parent="."]
+
+[node name="GridMap" type="GridMap" parent="GridMaps"]
+mesh_library = ExtResource("1_15nep")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Hazards" type="Node3D" parent="."]
+
+[node name="Misc" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Misc"]
+transform = Transform3D(0.906308, 0.211309, -0.365998, 0, 0.866025, 0.5, 0.422618, -0.453154, 0.784886, -44, 30, 42)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Misc"]
+environment = SubResource("Environment_fjg4o")
