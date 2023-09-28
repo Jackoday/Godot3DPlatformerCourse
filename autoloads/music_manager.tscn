@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cex0ohogfivjf"]
+
+[ext_resource type="Script" path="res://autoloads/music_manager.gd" id="1_n4dap"]
+[ext_resource type="AudioStream" uid="uid://c4t6ff040h72" path="res://common/audio/music/stage_2.ogg" id="2_ycv02"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_n4dap")
+
+[node name="LevelBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ycv02")
+volume_db = -10.0
