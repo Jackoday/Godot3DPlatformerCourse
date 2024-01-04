@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://csfmo7nphio4n"]
+[gd_scene load_steps=14 format=3 uid="uid://csfmo7nphio4n"]
 
 [ext_resource type="MeshLibrary" uid="uid://d11j0gmo2p600" path="res://levels/mesh_library.tres" id="1_15nep"]
 [ext_resource type="Script" path="res://levels/base_level.gd" id="1_mbhfu"]
 [ext_resource type="PackedScene" uid="uid://ceb250jsu81t5" path="res://user_interfaces/hud/hud.tscn" id="2_84k4j"]
+[ext_resource type="PackedScene" uid="uid://c78g3gj21f5ms" path="res://user_interfaces/pause_screen/pause_screen.tscn" id="3_ykyvw"]
 
 [sub_resource type="Animation" id="Animation_5qv2g"]
 length = 0.001
@@ -71,6 +72,7 @@ reflected_light_source = 1
 
 [node name="BaseLevel" type="Node3D"]
 script = ExtResource("1_mbhfu")
+result_screen = "res://user_interfaces/result_screen/result_screen.tscn"
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
@@ -91,6 +93,9 @@ libraries = {
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("2_84k4j")]
+
+[node name="PauseScreen" parent="UILayer" instance=ExtResource("3_ykyvw")]
+visible = false
 
 [node name="GridMaps" type="Node3D" parent="."]
 

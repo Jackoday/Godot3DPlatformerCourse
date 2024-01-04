@@ -1,6 +1,7 @@
 extends Node3D
 
 @export_file var next_level_scene: String
+@export_file var result_screen: String
 
 @onready var transition_animation := $TransitionLayer/AnimationPlayer
 @onready var hud := $UILayer/HUD
@@ -20,6 +21,23 @@ func level_clear():
 		transition_animation.play("fade_out")
 		await transition_animation.animation_finished
 		
+		GameData.total_times += times
+		GameData.total_diamonds += GameData.diamonds
+		
 		GameData.diamonds = 0
 		
 		get_tree().change_scene_to_file(next_level_scene)
+		
+	else:
+		transition_animation.play("fade_out")
+		await transition_animation.animation_finished
+		
+		GameData.total_times += times
+		GameData.total_diamonds += GameData.diamonds
+		
+		GameData.diamonds = 0
+		
+		if MusicManager.level_bgm.is_playing():
+			MusicManager.level_bgm.stop()
+			
+		get_tree().change_scene_to_file(result_screen)
