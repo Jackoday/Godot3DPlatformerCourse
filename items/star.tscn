@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3kcsnvixgsvx"]
+[gd_scene load_steps=11 format=3 uid="uid://d3kcsnvixgsvx"]
 
 [ext_resource type="PackedScene" uid="uid://cj74j20txawu0" path="res://items/item.tscn" id="1_bqfni"]
 [ext_resource type="Script" path="res://items/Star.gd" id="2_8dtvk"]
+[ext_resource type="AudioStream" uid="uid://j21gq6w3v2is" path="res://common/audio/sfx/sfx_sounds_fanfare3.wav" id="3_cf52n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gmyq2"]
 radius = 1.0
@@ -145,5 +146,8 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("ArrayMesh_ec088")
 skeleton = NodePath("")
+
+[node name="SFX" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_cf52n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

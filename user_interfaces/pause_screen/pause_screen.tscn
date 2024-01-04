@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://c78g3gj21f5ms"]
+
+[ext_resource type="Script" path="res://user_interfaces/pause_screen/pause_screen.gd" id="1_iemvo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27k3g"]
+bg_color = Color(0.6, 0.6, 0.6, 0.333333)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hk0vv"]
+font_size = 64
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iemvo")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_27k3g")
+
+[node name="Menu" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="MenuPanel/Menu"]
+layout_mode = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_hk0vv")
+horizontal_alignment = 1
+
+[node name="Button" type="VBoxContainer" parent="MenuPanel/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Resume" type="Button" parent="MenuPanel/Menu/Button"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="Settings" type="Button" parent="MenuPanel/Menu/Button"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MenuPanel/Menu/Button"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="MenuPanel/Menu/Button/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MenuPanel/Menu/Button/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuPanel/Menu/Button/Quit" to="." method="_on_quit_pressed"]

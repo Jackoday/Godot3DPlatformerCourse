@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceb250jsu81t5"]
+
+[ext_resource type="Script" path="res://user_interfaces/hud/hud.gd" id="1_yxees"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_88tqi"]
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_yxees")
+
+[node name="VBC" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 347.0
+offset_bottom = 104.0
+
+[node name="Time" type="HBoxContainer" parent="VBC"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBC/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time:"
+label_settings = SubResource("LabelSettings_88tqi")
+
+[node name="Value" type="Label" parent="VBC/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00:00:00"
+label_settings = SubResource("LabelSettings_88tqi")
+horizontal_alignment = 2
+
+[node name="Diamonds" type="HBoxContainer" parent="VBC"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBC/Diamonds"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Diamonds:"
+label_settings = SubResource("LabelSettings_88tqi")
+
+[node name="Value" type="Label" parent="VBC/Diamonds"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00"
+label_settings = SubResource("LabelSettings_88tqi")
+horizontal_alignment = 2
