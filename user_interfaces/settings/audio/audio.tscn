@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcel1qr7goghk"]
+
+[ext_resource type="Script" path="res://user_interfaces/settings/audio/audio.gd" id="1_2afef"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryy52"]
+bg_color = Color(0.6, 0.6, 0.6, 0.333333)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_36ruq"]
+font_size = 64
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tov2q"]
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Audio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2afef")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ryy52")
+
+[node name="MenuVBC" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="MenuPanel/MenuVBC"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Audio"
+label_settings = SubResource("LabelSettings_36ruq")
+horizontal_alignment = 1
+
+[node name="Music" type="HBoxContainer" parent="MenuPanel/MenuVBC"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="MenuPanel/MenuVBC/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Music"
+label_settings = SubResource("LabelSettings_tov2q")
+
+[node name="HSlider" type="HSlider" parent="MenuPanel/MenuVBC/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.05
+
+[node name="SFX" type="HBoxContainer" parent="MenuPanel/MenuVBC"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="MenuPanel/MenuVBC/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Sound Effects"
+label_settings = SubResource("LabelSettings_tov2q")
+
+[node name="HSlider" type="HSlider" parent="MenuPanel/MenuVBC/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.05
+
+[node name="Back" type="Button" parent="MenuPanel/MenuVBC"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+text = "Back"
+
+[connection signal="value_changed" from="MenuPanel/MenuVBC/Music/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MenuPanel/MenuVBC/SFX/HSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MenuPanel/MenuVBC/Back" to="." method="_on_back_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c78g3gj21f5ms"]
+[gd_scene load_steps=5 format=3 uid="uid://c78g3gj21f5ms"]
 
 [ext_resource type="Script" path="res://user_interfaces/pause_screen/pause_screen.gd" id="1_iemvo"]
+[ext_resource type="PackedScene" uid="uid://bm1dhyub4iwvd" path="res://user_interfaces/settings/settings.tscn" id="2_4uirs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27k3g"]
 bg_color = Color(0.6, 0.6, 0.6, 0.333333)
@@ -27,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iemvo")
+title_screen = "res://user_interfaces/title_screen/title_screen.tscn"
 
 [node name="MenuPanel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(300, 400)
@@ -83,6 +85,11 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
+[node name="Settings" parent="." instance=ExtResource("2_4uirs")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MenuPanel/Menu/Button/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MenuPanel/Menu/Button/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MenuPanel/Menu/Button/Quit" to="." method="_on_quit_pressed"]
+[connection signal="backed" from="Settings" to="." method="_on_settings_backed"]

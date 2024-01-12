@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwfg2jtwacelf"]
+
+[ext_resource type="Script" path="res://user_interfaces/title_screen/title_screen.gd" id="1_g21gb"]
+[ext_resource type="MeshLibrary" uid="uid://d11j0gmo2p600" path="res://levels/mesh_library.tres" id="1_xtb13"]
+[ext_resource type="PackedScene" uid="uid://pr85o0prfk2c" path="res://actors/player.tscn" id="2_m2tba"]
+[ext_resource type="PackedScene" uid="uid://bm1dhyub4iwvd" path="res://user_interfaces/settings/settings.tscn" id="4_1kpro"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_qde84"]
+
+[sub_resource type="Gradient" id="Gradient_lfhku"]
+offsets = PackedFloat32Array(0.560748, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c80tt"]
+seed = 2
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6e3ba"]
+seamless = true
+color_ramp = SubResource("Gradient_lfhku")
+noise = SubResource("FastNoiseLite_c80tt")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj3ee"]
+sky_top_color = Color(0.529412, 0.807843, 0.921569, 1)
+sky_horizon_color = Color(0.713726, 0.882353, 0.94902, 1)
+sky_cover = SubResource("NoiseTexture2D_6e3ba")
+ground_bottom_color = Color(0.529412, 0.807843, 0.921569, 1)
+ground_horizon_color = Color(0.713726, 0.882353, 0.94902, 1)
+
+[sub_resource type="Sky" id="Sky_kwxh4"]
+sky_material = SubResource("ProceduralSkyMaterial_fj3ee")
+
+[sub_resource type="Environment" id="Environment_w5u5n"]
+background_mode = 2
+sky = SubResource("Sky_kwxh4")
+ambient_light_sky_contribution = 0.2
+reflected_light_source = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_1dox1"]
+font_size = 64
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g21gb")
+level_01 = "res://levels/level_01.tscn"
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="GridMaps" type="Node3D" parent="Background"]
+
+[node name="GridMap" type="GridMap" parent="Background/GridMaps"]
+mesh_library = ExtResource("1_xtb13")
+data = {
+"cells": PackedInt32Array(65535, 65535, 0, 65534, 65535, 0, 65533, 65535, 0, 65532, 65535, 0, 65531, 65535, 0, 65530, 65535, 0, 65529, 65535, 0, 65528, 65535, 0, 65528, 65534, 0, 65528, 65533, 0, 65528, 65532, 0, 65528, 65531, 0, 65528, 65530, 0, 65528, 65529, 0, 65528, 65528, 0, 65529, 65528, 0, 65530, 65528, 0, 65531, 65528, 0, 65532, 65528, 0, 65533, 65528, 0, 65534, 65528, 0, 65535, 65528, 0, 65535, 65529, 0, 65535, 65530, 0, 65535, 65531, 0, 65535, 65532, 0, 65535, 65533, 0, 65535, 65534, 0, 65534, 65534, 0, 65533, 65534, 0, 65532, 65534, 0, 65531, 65534, 0, 65530, 65534, 0, 65529, 65534, 0, 65529, 65533, 0, 65529, 65532, 0, 65529, 65531, 0, 65529, 65530, 0, 65529, 65529, 0, 65530, 65529, 0, 65531, 65529, 0, 65532, 65529, 0, 65533, 65529, 0, 65534, 65529, 0, 65534, 65530, 0, 65534, 65531, 0, 65534, 65532, 0, 65534, 65533, 0, 65533, 65533, 0, 65532, 65533, 0, 65531, 65533, 0, 65530, 65533, 0, 65530, 65532, 0, 65530, 65531, 0, 65530, 65530, 0, 65531, 65530, 0, 65532, 65530, 0, 65533, 65530, 0, 65533, 65531, 0, 65533, 65532, 0, 65532, 65532, 0, 65531, 65532, 0, 65531, 65531, 0, 65532, 65531, 0, 0, 65528, 0, 1, 65528, 0, 2, 65528, 0, 3, 65528, 0, 4, 65528, 0, 5, 65528, 0, 6, 65528, 0, 7, 65528, 0, 7, 65529, 0, 7, 65530, 0, 7, 65531, 0, 7, 65532, 0, 7, 65533, 0, 7, 65534, 0, 7, 65535, 0, 7, 0, 0, 7, 1, 0, 7, 2, 0, 7, 3, 0, 7, 4, 0, 7, 5, 0, 7, 6, 0, 7, 7, 0, 6, 7, 0, 5, 7, 0, 4, 7, 0, 3, 7, 0, 2, 7, 0, 1, 7, 0, 0, 7, 0, 65535, 7, 0, 65534, 7, 0, 65533, 7, 0, 65532, 7, 0, 65531, 7, 0, 65530, 7, 0, 65529, 7, 0, 65528, 7, 0, 65528, 6, 0, 65528, 5, 0, 65528, 4, 0, 65528, 3, 0, 65528, 2, 0, 65528, 1, 0, 65529, 1, 0, 65529, 0, 0, 65528, 0, 0, 65529, 2, 0, 65529, 3, 0, 65529, 4, 0, 65529, 5, 0, 65529, 6, 0, 65530, 6, 0, 65531, 6, 0, 65532, 6, 0, 65533, 6, 0, 65534, 6, 0, 65535, 6, 0, 0, 6, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 6, 5, 0, 6, 4, 0, 6, 3, 0, 6, 2, 0, 6, 1, 0, 6, 0, 0, 6, 65535, 0, 6, 65534, 0, 6, 65533, 0, 6, 65532, 0, 6, 65531, 0, 6, 65530, 0, 6, 65529, 0, 5, 65529, 0, 4, 65529, 0, 3, 65529, 0, 2, 65529, 0, 1, 65529, 0, 0, 65529, 0, 0, 65530, 0, 1, 65530, 0, 2, 65530, 0, 3, 65530, 0, 4, 65530, 0, 5, 65530, 0, 5, 65531, 0, 4, 65531, 0, 3, 65531, 0, 2, 65531, 0, 1, 65531, 0, 0, 65531, 0, 0, 65532, 0, 1, 65532, 0, 2, 65532, 0, 3, 65532, 0, 4, 65532, 0, 5, 65532, 0, 5, 65533, 0, 4, 65533, 0, 3, 65533, 0, 2, 65533, 0, 1, 65533, 0, 0, 65533, 0, 0, 65534, 0, 1, 65534, 0, 2, 65534, 0, 3, 65534, 0, 4, 65534, 0, 5, 65534, 0, 5, 65535, 0, 4, 65535, 0, 3, 65535, 0, 2, 65535, 0, 1, 65535, 0, 0, 65535, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 5, 1, 0, 4, 1, 0, 3, 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65535, 0, 0, 65534, 0, 0, 65534, 1, 0, 65533, 1, 0, 65533, 0, 0, 65532, 0, 0, 65532, 1, 0, 65531, 1, 0, 65531, 0, 0, 65530, 0, 0, 65530, 1, 0, 65530, 2, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 5, 3, 0, 4, 3, 0, 3, 3, 0, 2, 3, 0, 1, 3, 0, 0, 3, 0, 65535, 3, 0, 65534, 3, 0, 65533, 3, 0, 65532, 3, 0, 65531, 3, 0, 65530, 3, 0, 65530, 4, 0, 65531, 4, 0, 65532, 4, 0, 65533, 4, 0, 65534, 4, 0, 65535, 4, 0, 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 5, 5, 0, 4, 5, 0, 3, 5, 0, 2, 5, 0, 1, 5, 0, 0, 5, 0, 65535, 5, 0, 65534, 5, 0, 65533, 5, 0, 65532, 5, 0, 65531, 5, 0, 65530, 5, 0)
+}
+
+[node name="Players" type="Node3D" parent="Background"]
+
+[node name="Player" parent="Background/Players" instance=ExtResource("2_m2tba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+script = null
+
+[node name="CameraRig" parent="Background/Players/Player" index="1"]
+script = null
+
+[node name="Skeleton3D" parent="Background/Players/Player/Model" index="1"]
+bones/0/rotation = Quaternion(-0.00076849, 0, 2.80887e-18, 1)
+bones/1/rotation = Quaternion(0.0455318, 1.57657e-26, -1.5371e-17, 0.998963)
+bones/2/rotation = Quaternion(-0.685648, -0.173001, 0.685581, -0.173019)
+bones/3/rotation = Quaternion(0.606617, -0.606617, 0.36334, 0.36334)
+bones/4/rotation = Quaternion(-0.704789, 0.286647, 0.646693, 0.0537936)
+bones/5/rotation = Quaternion(0.300506, -0.376591, 0.679877, 0.55285)
+
+[node name="Head" parent="Background/Players/Player/Model/Skeleton3D" index="0"]
+transform = Transform3D(1, 2.51153e-17, -8.93e-19, -2.50946e-17, 0.995992, -0.0894384, -1.35686e-18, 0.0894384, 0.995992, -3.99756e-18, 0.711597, -0.00109371)
+
+[node name="Body" parent="Background/Players/Player/Model/Skeleton3D" index="1"]
+transform = Transform3D(1, -5.61773e-18, -4.31717e-21, 5.61773e-18, 0.999999, 0.00153698, -4.31717e-21, -0.00153698, 0.999999, 0, 0, 0)
+
+[node name="ArmLeft" parent="Background/Players/Player/Model/Skeleton3D" index="2"]
+transform = Transform3D(9.74536e-05, 0.474473, -0.88027, -0.00153759, -0.880269, -0.474472, -0.999999, 0.00139972, 0.000643782, 0.14, 0.691597, -0.00106297)
+
+[node name="HandSlotLeft" parent="Background/Players/Player/Model/Skeleton3D" index="3"]
+transform = Transform3D(-0.999996, -9.74536e-05, -0.00287932, -0.00287959, 0.00153759, 0.999995, -9.29978e-05, 0.999999, -0.00153786, 0.401398, 0.206638, -0.000291837)
+
+[node name="ArmRight" parent="Background/Players/Player/Model/Skeleton3D" index="4"]
+transform = Transform3D(-0.000757098, -0.473628, -0.880725, -0.335924, -0.829425, 0.446329, -0.941889, 0.296195, -0.158475, -0.14, 0.691597, -0.00106297)
+
+[node name="HandSlotRight" parent="Background/Players/Player/Model/Skeleton3D" index="5"]
+transform = Transform3D(-0.975296, 0.208861, -0.0719401, 0.00235108, 0.335458, 0.942052, 0.220891, 0.91861, -0.327662, -0.400932, 0.234649, 0.162117)
+
+[node name="AnimationTree" parent="Background/Players/Player" index="3"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_qde84")
+
+[node name="Camera3D" type="Camera3D" parent="Background"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 3, 3.5, -3)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background"]
+transform = Transform3D(-0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, 0.353553, -0.612372, 30, 15, -30)
+light_energy = 1.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
+environment = SubResource("Environment_w5u5n")
+
+[node name="MainMenuVBC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_right = 500.0
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Title" type="Label" parent="MainMenuVBC"]
+layout_mode = 2
+text = "3D Platformer"
+label_settings = SubResource("LabelSettings_1dox1")
+
+[node name="Buttons" type="VBoxContainer" parent="MainMenuVBC"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Start" type="Button" parent="MainMenuVBC/Buttons"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Settings" type="Button" parent="MainMenuVBC/Buttons"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MainMenuVBC/Buttons"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="Settings" parent="." instance=ExtResource("4_1kpro")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MainMenuVBC/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainMenuVBC/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenuVBC/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="backed" from="Settings" to="." method="_on_settings_backed"]
+
+[editable path="Background/Players/Player"]

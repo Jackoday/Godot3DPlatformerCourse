@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm1dhyub4iwvd"]
+
+[ext_resource type="Script" path="res://user_interfaces/settings/settings.gd" id="1_xylii"]
+[ext_resource type="PackedScene" uid="uid://bx8mgt5cygdex" path="res://user_interfaces/settings/display/display.tscn" id="2_6ieha"]
+[ext_resource type="PackedScene" uid="uid://bcel1qr7goghk" path="res://user_interfaces/settings/audio/audio.tscn" id="3_wjfgq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rehsb"]
+bg_color = Color(0.6, 0.6, 0.6, 0.333333)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ik7xf"]
+font_size = 64
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xylii")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rehsb")
+
+[node name="MenuVBC" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Title" type="Label" parent="MenuPanel/MenuVBC"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_ik7xf")
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MenuPanel/MenuVBC"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Display" type="Button" parent="MenuPanel/MenuVBC/Buttons"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Display"
+
+[node name="Audio" type="Button" parent="MenuPanel/MenuVBC/Buttons"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Audio"
+
+[node name="Back" type="Button" parent="MenuPanel/MenuVBC/Buttons"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="Display" parent="." instance=ExtResource("2_6ieha")]
+visible = false
+layout_mode = 1
+
+[node name="Audio" parent="." instance=ExtResource("3_wjfgq")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MenuPanel/MenuVBC/Buttons/Display" to="." method="_on_display_pressed"]
+[connection signal="pressed" from="MenuPanel/MenuVBC/Buttons/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="MenuPanel/MenuVBC/Buttons/Back" to="." method="_on_back_pressed"]
+[connection signal="backed" from="Display" to="." method="_on_display_backed"]
+[connection signal="backed" from="Audio" to="." method="_on_audio_backed"]
