@@ -112,7 +112,7 @@ mesh_library = ExtResource("1_15nep")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Misc"]
 transform = Transform3D(0.906308, 0.211309, -0.365998, 0, 0.866025, 0.5, 0.422618, -0.453154, 0.784886, -44, 30, 42)
-light_energy = 2.0
+light_energy = 1.5
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Misc"]

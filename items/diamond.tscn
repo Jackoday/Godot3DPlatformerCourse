@@ -206,5 +206,6 @@ libraries = {
 
 [node name="SFX" type="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource("3_4vsxf")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,5 +1,6 @@
 extends Control
 
+@export_file var title_screen: String
 @export_file var level_01: String
 
 @onready var best_times := $MenuContainer/Records/Best/Time/Value
@@ -45,4 +46,4 @@ func _on_retry_pressed():
 	
 
 func _on_quit_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file(title_screen)
